@@ -57,7 +57,7 @@ export default function Footer() {
                 </button>
               </div>
             </div>
-            <div className="w-full lg:w-6/12 px-4">
+            {/* <div className="w-full lg:w-6/12 px-4">
               <div className="flex flex-wrap items-top mb-6">
                 <div className="w-full lg:w-4/12 px-4 ml-auto">
                   <span className="block uppercase text-blueGray-500 text-sm font-semibold mb-2">
@@ -138,18 +138,18 @@ export default function Footer() {
                   </ul>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
           <hr className="my-6 border-blueGray-300" />
           <div className="flex flex-wrap items-center md:justify-between justify-center">
             <div className="w-full md:w-4/12 px-4 mx-auto text-center">
               <div className="text-sm text-blueGray-500 font-semibold py-1">
-                Copyright © {new Date().getFullYear()} Notus NextJS by{" "}
+                Copyright © {new Date().getFullYear()} ArtiGen by{" "}
                 <a
-                  href="https://www.creative-tim.com?ref=nnjs-footer"
+                  href="#"
                   className="text-blueGray-500 hover:text-blueGray-800"
                 >
-                  Creative Tim
+                  Next Tech Hub
                 </a>
                 .
               </div>
