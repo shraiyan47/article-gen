@@ -59,7 +59,7 @@ export default function Landing() {
                           information. Remember that by this time, the user is
                           curious.
                         </p>
-                        <button className="bg-sky-500 flex-auto shadow text-black rounded-md text-sm border-y border-transparent py-2 font-semibold px-3  " onClick={()=> router.push("/writeJourney")}>Start Writing</button>
+                        <button className="bg-sky-500 flex-auto shadow text-black rounded-md text-sm border-y border-transparent py-2 font-semibold px-3  " onClick={()=> router.push("/article/writeJourney")}>Start Writing</button>
                       </div>
                     </div>
                   </div>
