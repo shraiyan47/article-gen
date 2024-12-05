@@ -19,7 +19,7 @@ export default function Topic({ nextCallback }) {
         <div className="flex flex-wrap items-center">
           <div className="relative w-full px-4 max-w-full flex-grow flex-1">
             <h3 className={"font-semibold text-lg  text-blueGray-700 "}>
-              Topic
+              Step 1 : Topic and Article Type
             </h3>
             <div className="w-full lg:w-6/12 px-4">
               <div className="relative w-full mb-3 mt-8">

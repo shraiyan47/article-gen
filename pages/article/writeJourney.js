@@ -1,18 +1,27 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import SidebarArticle from "components/Sidebar/SidebarArticle";
 import AdminNavbar from "components/Navbars/AdminNavbar.js"; 
 import FooterAdmin from "components/Footers/FooterAdmin";
 import Topic from "components/ArticleJourney/Topic";
+import Keywords from "components/ArticleJourney/Keywords";
+import TitleAndHeading from "components/ArticleJourney/TitleAndHeading";
 
 function writeJourney() { 
-const [steps, setSteps] = useState(0);
+const [steps, setSteps] = useState('0');
+const [values, setValues] = useState([]);
   function callbackHandler(val) {
     console.log(val)
-    if(val.step === '1'){
-      setSteps(1)
-    }
+    // if(val.step === '1'){
+      setSteps(val.step)
+      setValues([...values,val.value])
+    // }
   }
+
+  useEffect(() => {
+    console.log(values)
+  }, [values])
+  
 
   return (
     <div>
@@ -25,21 +34,30 @@ const [steps, setSteps] = useState(0);
         </div>
 
         <div className="flex flex-wrap mt-4">
-          <div className="w-full mb-12 px-4">
+          <div className="w-full mb-12 px-4"> 
             <div
               className={
                 "relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-white"
               }
             >
             {
-              steps === 0
+              steps === '0'
               ?
               <Topic nextCallback={callbackHandler} />
               :
-              steps === 1
+              steps === '1'
+              ?
+              <><Keywords nextCallback={callbackHandler}  /></>
+              :steps === '2'
+              ?
+              <><TitleAndHeading nextCallback={callbackHandler}  /></>
+              :steps === '3'
               ?
               <>Hukka</>
-              :
+              :steps === '4'
+              ?
+              <>Hukka</>
+              :steps === '5' &&
               <>Bukka</>
             }
 
