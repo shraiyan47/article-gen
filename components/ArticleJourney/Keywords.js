@@ -33,6 +33,7 @@ export default function Keywords({ nextCallback }) {
                     <label
                       className="inline-flex items-center p-3 rounded-lg border border-gray-200 bg-white cursor-pointer hover:bg-gray-100 ml-3"
                       key={i}
+                      draggable='true'
                     >
                       <input
                         type="checkbox"

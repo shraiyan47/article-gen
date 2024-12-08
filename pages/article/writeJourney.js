@@ -5,7 +5,9 @@ import AdminNavbar from "components/Navbars/AdminNavbar.js";
 import FooterAdmin from "components/Footers/FooterAdmin";
 import Topic from "components/ArticleJourney/Topic";
 import Keywords from "components/ArticleJourney/Keywords";
-import TitleAndHeading from "components/ArticleJourney/TitleAndHeading";
+import TitleAndHeading from "components/ArticleJourney/TitleAndHeading"; 
+// import HeadingSort from "components/ArticleJourney/HeadingSort";
+import Draggable from "components/ArticleJourney/HeadingSort";
 
 function writeJourney() { 
 const [steps, setSteps] = useState('0');
@@ -53,12 +55,12 @@ const [values, setValues] = useState([]);
               <><TitleAndHeading nextCallback={callbackHandler}  /></>
               :steps === '3'
               ?
-              <>Hukka</>
+              <><Draggable nextCallback={callbackHandler}   /></>
               :steps === '4'
               ?
-              <>Hukka</>
+              <>5</>
               :steps === '5' &&
-              <>Bukka</>
+              <>6</>
             }
 
             </div>
