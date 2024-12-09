@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 // layout for page
 
@@ -6,42 +6,59 @@ import Auth from "layouts/Auth.js";
 import { useRouter } from "next/router";
 
 export default function Register() {
+  const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
-  const router = useRouter()
+  const router = useRouter();
+
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   function registrationHandler(params) {
     params.preventDefault();
-    const formData = new FormData(params.target)
-    console.log(formData) 
+    const formData = new FormData(params.target);
+    console.log(formData);
     // router.push('/auth/login')
   }
-  const [isLoading, setIsLoading] = useState(false)
-  const [error, setError] = useState(null)
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+  let data;
+  useEffect(() => {
+    data = {
+      username: name,
+      email: email,
+      password: password,
+    };
+  }, [name, email, password]);
+
   async function onSubmit(event) {
-    event.preventDefault()
-    setIsLoading(true)
-    setError(null) // Clear previous errors when a new request starts
- 
+    event.preventDefault();
+    setIsLoading(true);
+    setError(null); // Clear previous errors when a new request starts
+
     try {
-      const formData = new FormData(event.currentTarget)
-      const response = await fetch('/api/submit', {
-        method: 'POST',
-        body: formData,
-      })
- 
+      const response = await fetch(baseURL + "/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data),
+      });
+
       if (!response.ok) {
-        throw new Error('Failed to submit the data. Please try again.')
+        throw new Error("Failed to submit the data. Please try again.");
       }
- 
+
       // Handle response if necessary
-      const data = await response.json()
+      const dataX = await response.json();
+      console.log(dataX);
       // ...
     } catch (error) {
       // Capture the error message to display to the user
-      setError(error.message)
-      console.error(error)
+      setError(error.message);
+      console.error(error);
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
   }
 
@@ -58,7 +75,6 @@ export default function Register() {
                   </h6>
                 </div>
                 <div className="btn-wrapper text-center">
-                    
                   <button
                     className="bg-white active:bg-blueGray-50 text-blueGray-700 font-normal px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs ease-linear transition-all duration-150"
                     type="button"
@@ -85,6 +101,8 @@ export default function Register() {
                       type="text"
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       placeholder="Name"
+                      name="username"
+                      onChange={(x) => setName(x.target.value)}
                     />
                   </div>
 
@@ -99,6 +117,8 @@ export default function Register() {
                       type="email"
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       placeholder="Email"
+                      name="email"
+                      onChange={(x) => setEmail(x.target.value)}
                     />
                   </div>
 
@@ -113,6 +133,8 @@ export default function Register() {
                       type="password"
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       placeholder="Password"
+                      name="password"
+                      onChange={(x) => setPassword(x.target.value)}
                     />
                   </div>
 
@@ -140,7 +162,6 @@ export default function Register() {
                     <button
                       className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
                       type="submit"
-                      
                     >
                       Create Account
                     </button>
